@@ -39,7 +39,7 @@
 The folder [`rosnlib/`] contains:
 * [`boot/`]: boot checks as options management, getting the link-layer header type, etc.
 * [`process/`]: the main loop function used for sniffing
-* [`prots/`]: files which are handling the different protocols (Ethernet, ARP, IPv4, IPv6, TCP, UDP, etc.)
+* [`prots/`]: files which are handling the different protocols (Ethernet, ARP, IPv4, IPv6, TCP, etc.)
 * [`utils/`]: miscellaneous elements as help or color printers
 
 ## License
