@@ -46,11 +46,11 @@ The folder [`rosnlib/`] contains:
 This project is under the [BSD 2-Clause license].
 
 
-[`boot/`]: "boot/"
-[`process/`]: "process/"
-[`prots/`]: "prots/"
+[`boot/`]: /rosnlib/boot "boot/"
+[`process/`]: /rosnlib/process "process/"
+[`prots/`]: /rosnlib/prots "prots/"
 [`rosnlib/`]: /rosnlib "rosnlib/"
-[`utils/`]: "utils/"
+[`utils/`]: /rosnlib/utils "utils/"
 [License]: /README.md#license "License"
 [Requirements]: /README.md#requirements "Requirements"
 [rosnlib]: /README.md#rosnlib "rosnlib"
