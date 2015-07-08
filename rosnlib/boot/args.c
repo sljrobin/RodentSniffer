@@ -2,11 +2,11 @@
  * =======================================================================================
  *
  *       Filename: args.c
- *    Description:
+ *    Description: Management of the command line arguments
  *       Compiler: gcc
  *         Author: Simon L. J. Robin - http://sljrobin.com
  *        Created: 2015-04-30 10:40:12
- *       Modified: 2015-07-07 13:44:07
+ *       Modified: 2015-07-08 09:19:43
  *
  * =======================================================================================
  */
@@ -23,7 +23,14 @@
 #include "devs.h"
 
 
-/* Manage the program arguments*/
+/** 
+ * rosn_boot_args_manage()
+ * 
+ * Manage the program arguments
+ *      argcnt: count of total command line arguments 
+ *      argvctr: array of character string of each command line argument
+ * Return 0
+ */
 int rosn_boot_args_manage(int argcnt, char *argvctr[])
 {
     char *argvle_f = NULL;                  /* Value for the `-f` option */
@@ -37,34 +44,35 @@ int rosn_boot_args_manage(int argcnt, char *argvctr[])
 
     /* Printer */
     rosn_clrset ptarg_error;
-    rosn_utils_clrprnt_setattr(rosn_utils_clrprnt_setfg(rosn_utils_clrprnt_init(&ptarg_error), ROSN_CLR_RED), ROSN_ATTR_NONE); /* Argument error */
+
+    rosn_utils_clrprnt_setattr(rosn_utils_clrprnt_setfg(rosn_utils_clrprnt_init(&ptarg_error), ROSN_CLR_RED), ROSN_ATTR_NONE);
 
     while ((opt = getopt(argcnt, argvctr, "f:hlps:")) != -1) {
         switch (opt) {
-            /** Filter **/
+            /* Filter */
             case 'f':
                 argvle_f = optarg;
                 break;
-            /** Help **/
+            /* Help */
             case 'h':
                 rosn_utils_help_full();
                 exit(0);
-            /** List devices **/
+            /* List devices */
             case 'l':
                 rosn_boot_ckid_hasrights();
                 rosn_boot_devs_list();
                 exit(0);
-            /** Promiscuous **/
+            /* Promiscuous */
             case 'p':
                 argflg_p = ROSN_PROMISCUOUS_ON;
                 break;
-            /** Sniff **/
+            /* Sniff */
             case 's':
                 argvle_s = optarg;
                 rosn_boot_ckid_hasrights();
                 rosn_process_sniff_loop(argvle_s, argvle_f, argflg_p);
                 break;
-            /** Error cases **/
+            /* Error cases */
             case '?':
                 /* '-s' without a device */
                 if (optopt == 's')
@@ -76,7 +84,7 @@ int rosn_boot_args_manage(int argcnt, char *argvctr[])
                 else
                     cprintf(&ptarg_error, "[ERROR]: The option '-\\x%x' is an unknown option character. Type \"%s -h\" for printing help.\n", optopt, argvctr[0]);
                 return 1;
-            /** Default **/
+            /* Default */
             default:
                 abort();
         }

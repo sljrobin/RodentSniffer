@@ -2,11 +2,11 @@
  * =======================================================================================
  *
  *       Filename: sniff.h
- *    Description:
+ *    Description: Sniffing functions
  *       Compiler: gcc
  *         Author: Simon L. J. Robin - http://sljrobin.com
  *        Created: 2015-04-30 15:27:53
- *       Modified: 2015-07-07 12:02:28
+ *       Modified: 2015-07-08 09:36:48
  *
  * =======================================================================================
  */

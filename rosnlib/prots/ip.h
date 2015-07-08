@@ -2,11 +2,11 @@
  * =======================================================================================
  *
  *       Filename: ip.h
- *    Description:
+ *    Description: IP handling
  *       Compiler: gcc
  *         Author: Simon L. J. Robin - http://sljrobin.com
  *        Created: 2015-04-30 15:27:53
- *       Modified: 2015-07-07 17:38:45
+ *       Modified: 2015-07-08 10:51:09
  *
  * =======================================================================================
  */
@@ -14,7 +14,7 @@
 #ifndef _ROSNLIB_IP_H_
 #define _ROSNLIB_IP_H_
 
-typedef struct rosn_ipv4hdr rosn_ipv4hdr;
+typedef struct rosn_ipv4hdr rosn_ipv4hdr;   /* IPv4 Header                   */
 struct rosn_ipv4hdr {
 #if __BYTE_ORDER == __LITTLE_ENDIAN
     uint8_t hlen:4;                         /* IPv4 Header length            */
@@ -39,7 +39,7 @@ struct rosn_ipv4hdr {
     struct in_addr addrdst;                 /* IPv4 Destination Address      */
 };
 
-typedef struct rosn_ipv6hdr rosn_ipv6hdr;
+typedef struct rosn_ipv6hdr rosn_ipv6hdr;   /* IPv6 Header                             */
 struct rosn_ipv6hdr {
 #if __BYTE_ORDER == __LITTLE_ENDIAN
     uint32_t tc:4, v:4, fl:20;              /* IPv6 Traffic Class, Version, Flow Label */

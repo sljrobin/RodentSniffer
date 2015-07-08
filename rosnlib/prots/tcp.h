@@ -2,11 +2,11 @@
  * =======================================================================================
  *
  *       Filename: tcp.h
- *    Description:
+ *    Description: TCP handling
  *       Compiler: gcc
  *         Author: Simon L. J. Robin - http://sljrobin.com
  *        Created: 2015-04-24 12:27:32
- *       Modified: 2015-07-07 17:48:55
+ *       Modified: 2015-07-08 11:09:32
  *
  * =======================================================================================
  */
@@ -14,19 +14,20 @@
 #ifndef _ROSNLIB_TCP_H_
 #define _ROSNLIB_TCP_H_
 
-typedef struct rosn_tcphdr rosn_tcphdr;
+typedef struct rosn_tcphdr rosn_tcphdr;         /* TCP Header                */
 struct rosn_tcphdr {
-    uint16_t portsrc;                          /* TCP Source Port           */
-    uint16_t portdst;                          /* TCP Destination Port      */
-    uint32_t seq;                              /* TCP Sequence number       */
-    uint32_t ack;                              /* TCP Acknowledgment number */
-    uint8_t doff;                              /* TCP Data Offset           */
-    uint8_t flgs;                              /* TCP Flags                 */
-    uint16_t wins;                             /* TCP Window Size           */
-    uint16_t csum;                             /* TCP Checksum              */
-    uint16_t uptr;                             /* TCP Urgent Pointer        */
+    uint16_t portsrc;                           /* TCP Source Port           */
+    uint16_t portdst;                           /* TCP Destination Port      */
+    uint32_t seq;                               /* TCP Sequence number       */
+    uint32_t ack;                               /* TCP Acknowledgment number */
+    uint8_t doff;                               /* TCP Data Offset           */
+    uint8_t flgs;                               /* TCP Flags                 */
+    uint16_t wins;                              /* TCP Window Size           */
+    uint16_t csum;                              /* TCP Checksum              */
+    uint16_t uptr;                              /* TCP Urgent Pointer        */
 };
 
 void rosn_prots_tcp_handle(const u_char *pkt, uint32_t pktlen); /* Handle TCP */
 void rosn_prots_tcp_payload(const u_char *pkt, int sizehdr);    /* Print payload for a TCP packet */
+
 #endif

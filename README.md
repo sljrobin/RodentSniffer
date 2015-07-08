@@ -19,7 +19,7 @@
 * Compile using the [makefile]: `make all`
 
 ## Usage & Options
-* __Usage__ `rosn <option>`
+* __Usage__: `rosn <option>`
 * __Options__
     * `-f <"filter">`: add a filter with the [pcap-filter syntax]
     * `-h`: print the help
@@ -30,7 +30,7 @@
     * `rosn -p -f "arp" -s eth0`
     * `rosn -h`
     * `rosn -l`
-* __Note__ the order of the options matters
+* __Note__: the order of the options matters
     * `-p`
     * `-f "<filter>"`
     * `-s <device>`
