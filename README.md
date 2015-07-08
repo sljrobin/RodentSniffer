@@ -9,8 +9,8 @@
 * [License]
 
 ## Requirements
-* [libpcap]: to capture packets
-* [gcc]: to compile the project
+* [libpcap] to capture packets
+* [gcc] to compile the project
 * `root` privileges for packet collection
 
 ## Sniff the Network
