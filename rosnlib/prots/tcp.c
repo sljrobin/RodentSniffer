@@ -2,11 +2,11 @@
  * =======================================================================================
  *
  *       Filename: tcp.c
- *    Description:
+ *    Description: TCP handling
  *       Compiler: gcc
  *         Author: Simon L. J. Robin - http://sljrobin.com
  *        Created: 2015-04-24 12:27:23
- *       Modified: 2015-07-07 17:49:26
+ *       Modified: 2015-07-08 11:09:31
  *
  * =======================================================================================
  */
@@ -22,7 +22,13 @@
 #include "tcp.h"
 
 
-/* Handle TCP */
+/** 
+ * rosn_prots_tcp_handle()
+ * 
+ * Handle TCP
+ *      pkt: the packet
+ *      pktlen: packet length
+ */
 void rosn_prots_tcp_handle(const u_char *pkt, uint32_t pktlen)
 {
     struct rosn_ipv4hdr *iphdr;         /* IP Header */
@@ -33,36 +39,48 @@ void rosn_prots_tcp_handle(const u_char *pkt, uint32_t pktlen)
     unsigned int sizehdr = 0;           /* Size for the main header */
 
     /* Printers */
-    rosn_clrset ptsep; rosn_utils_clrprnt_setattr(rosn_utils_clrprnt_setfg(rosn_utils_clrprnt_init(&ptsep), ROSN_CLR_WHITE), ROSN_ATTR_NONE);
-    rosn_clrset pttcp; rosn_utils_clrprnt_setattr(rosn_utils_clrprnt_init(&pttcp), ROSN_ATTR_UNDERLINE);
-    rosn_clrset pttcp_ack; rosn_utils_clrprnt_setattr(rosn_utils_clrprnt_setfg(rosn_utils_clrprnt_init(&pttcp_ack), ROSN_CLR_RED), ROSN_ATTR_NONE);
-    rosn_clrset pttcp_csum; rosn_utils_clrprnt_setattr(rosn_utils_clrprnt_setfg(rosn_utils_clrprnt_init(&pttcp_csum), ROSN_CLR_YELLOW), ROSN_ATTR_NONE);
-    rosn_clrset pttcp_doff; rosn_utils_clrprnt_setattr(rosn_utils_clrprnt_setfg(rosn_utils_clrprnt_init(&pttcp_doff), ROSN_CLR_YELLOW), ROSN_ATTR_NONE);
-    rosn_clrset pttcp_flgs; rosn_utils_clrprnt_setattr(rosn_utils_clrprnt_setfg(rosn_utils_clrprnt_init(&pttcp_flgs), ROSN_CLR_YELLOW), ROSN_ATTR_NONE);
-    rosn_clrset pttcp_portdst; rosn_utils_clrprnt_setattr(rosn_utils_clrprnt_setfg(rosn_utils_clrprnt_init(&pttcp_portdst), ROSN_CLR_CYAN), ROSN_ATTR_NONE);
-    rosn_clrset pttcp_portsrc; rosn_utils_clrprnt_setattr(rosn_utils_clrprnt_setfg(rosn_utils_clrprnt_init(&pttcp_portsrc), ROSN_CLR_BLUE), ROSN_ATTR_NONE);
-    rosn_clrset pttcp_seq; rosn_utils_clrprnt_setattr(rosn_utils_clrprnt_setfg(rosn_utils_clrprnt_init(&pttcp_seq), ROSN_CLR_RED), ROSN_ATTR_NONE);
-    rosn_clrset pttcp_uptr; rosn_utils_clrprnt_setattr(rosn_utils_clrprnt_setfg(rosn_utils_clrprnt_init(&pttcp_uptr), ROSN_CLR_YELLOW), ROSN_ATTR_NONE);
-    rosn_clrset pttcp_wins; rosn_utils_clrprnt_setattr(rosn_utils_clrprnt_setfg(rosn_utils_clrprnt_init(&pttcp_wins), ROSN_CLR_YELLOW), ROSN_ATTR_NONE);
+    rosn_clrset ptsep;
+    rosn_clrset pttcp;
+    rosn_clrset pttcp_ack;
+    rosn_clrset pttcp_csum;
+    rosn_clrset pttcp_doff;
+    rosn_clrset pttcp_flgs;
+    rosn_clrset pttcp_portdst;
+    rosn_clrset pttcp_portsrc;
+    rosn_clrset pttcp_seq;
+    rosn_clrset pttcp_uptr;
+    rosn_clrset pttcp_wins;
 
-    iphdr = (struct rosn_ipv4hdr *)(pkt + sizeof(struct rosn_ethhdr));                      /* Point to the IP Header */
-    tcphdr = (struct rosn_tcphdr *)(pkt + (iphdr->hlen * 4) + sizeof(struct rosn_ethhdr));  /* Point to the TCP Header*/
-    len_ethhdr = sizeof(struct rosn_ethhdr);                                                /* Getting the size of an Ethernet header */
-    len_iphdr = iphdr->hlen * 4;                                                            /* Getting the size of an IP header */
-    len_tcphdr = sizeof(tcphdr);                                                            /* Getting the size of a TCP header */
-    sizehdr = len_ethhdr + len_iphdr + len_tcphdr;                                          /* Getting the size for the main header */
+    rosn_utils_clrprnt_setattr(rosn_utils_clrprnt_setfg(rosn_utils_clrprnt_init(&ptsep), ROSN_CLR_WHITE), ROSN_ATTR_NONE);          /* Separator */
+    rosn_utils_clrprnt_setattr(rosn_utils_clrprnt_init(&pttcp), ROSN_ATTR_UNDERLINE);                                               /* TCP */
+    rosn_utils_clrprnt_setattr(rosn_utils_clrprnt_setfg(rosn_utils_clrprnt_init(&pttcp_ack), ROSN_CLR_RED), ROSN_ATTR_NONE);        /* TCP Acknowledgment number */
+    rosn_utils_clrprnt_setattr(rosn_utils_clrprnt_setfg(rosn_utils_clrprnt_init(&pttcp_csum), ROSN_CLR_YELLOW), ROSN_ATTR_NONE);    /* TCP Checksum */
+    rosn_utils_clrprnt_setattr(rosn_utils_clrprnt_setfg(rosn_utils_clrprnt_init(&pttcp_doff), ROSN_CLR_YELLOW), ROSN_ATTR_NONE);    /* TCP Data Offset */
+    rosn_utils_clrprnt_setattr(rosn_utils_clrprnt_setfg(rosn_utils_clrprnt_init(&pttcp_flgs), ROSN_CLR_YELLOW), ROSN_ATTR_NONE);    /* TCP Flags */
+    rosn_utils_clrprnt_setattr(rosn_utils_clrprnt_setfg(rosn_utils_clrprnt_init(&pttcp_portdst), ROSN_CLR_CYAN), ROSN_ATTR_NONE);   /* TCP Destination Port */
+    rosn_utils_clrprnt_setattr(rosn_utils_clrprnt_setfg(rosn_utils_clrprnt_init(&pttcp_portsrc), ROSN_CLR_BLUE), ROSN_ATTR_NONE);   /* TCP Source Port */
+    rosn_utils_clrprnt_setattr(rosn_utils_clrprnt_setfg(rosn_utils_clrprnt_init(&pttcp_seq), ROSN_CLR_RED), ROSN_ATTR_NONE);        /* TCP Sequence number */
+    rosn_utils_clrprnt_setattr(rosn_utils_clrprnt_setfg(rosn_utils_clrprnt_init(&pttcp_uptr), ROSN_CLR_YELLOW), ROSN_ATTR_NONE);    /* TCP Urgent Pointer */
+    rosn_utils_clrprnt_setattr(rosn_utils_clrprnt_setfg(rosn_utils_clrprnt_init(&pttcp_wins), ROSN_CLR_YELLOW), ROSN_ATTR_NONE);    /* TCP Window Size */ 
 
-    /* Print details */
-    cprintf(&ptsep, "¤"); printf("["); cprintf(&pttcp, "TCP"); printf("]");             /* TCP                       */
-    printf("["); cprintf(&pttcp_portsrc, "%u", ntohs(tcphdr->portsrc)); printf("]");    /* TCP Source Port           */
-    printf("["); cprintf(&pttcp_portdst, "%u", ntohs(tcphdr->portdst)); printf("]");    /* TCP Destination Port      */
-    printf("["); cprintf(&pttcp_seq, "%u", ntohl(tcphdr->seq)); printf("]");            /* TCP Sequence number       */
+    iphdr = (struct rosn_ipv4hdr *)(pkt + sizeof(struct rosn_ethhdr));                      /* Pointing to the IP Header */
+    tcphdr = (struct rosn_tcphdr *)(pkt + (iphdr->hlen * 4) + sizeof(struct rosn_ethhdr));  /* Pointing to the TCP Header*/
+
+    len_ethhdr = sizeof(struct rosn_ethhdr);        /* Getting the size of an Ethernet header */
+    len_iphdr = iphdr->hlen * 4;                    /* Getting the size of an IP header */
+    len_tcphdr = sizeof(tcphdr);                    /* Getting the size of a TCP header */
+    sizehdr = len_ethhdr + len_iphdr + len_tcphdr;  /* Getting the size for the main header */
+
+    cprintf(&ptsep, "¤"); printf("["); cprintf(&pttcp, "TCP"); printf("]");             /* TCP */
+    printf("["); cprintf(&pttcp_portsrc, "%u", ntohs(tcphdr->portsrc)); printf("]");    /* TCP Source Port */
+    printf("["); cprintf(&pttcp_portdst, "%u", ntohs(tcphdr->portdst)); printf("]");    /* TCP Destination Port */
+    printf("["); cprintf(&pttcp_seq, "%u", ntohl(tcphdr->seq)); printf("]");            /* TCP Sequence number */
     printf("["); cprintf(&pttcp_ack, "%u", ntohl(tcphdr->ack)); printf("]");            /* TCP Acknowledgment number */
-    printf("["); cprintf(&pttcp_doff, "%d", tcphdr->doff * 4); printf("]");             /* TCP Data Offset           */
-    printf("["); cprintf(&pttcp_flgs, "%d", tcphdr->flgs); printf("]");                 /* TCP Flags                 */
-    printf("["); cprintf(&pttcp_wins, "%d", tcphdr->wins); printf("]");                 /* TCP Window Size           */
-    printf("["); cprintf(&pttcp_csum, "%d", tcphdr->csum); printf("]");                 /* TCP Checksum              */
-    printf("["); cprintf(&pttcp_uptr, "%d", tcphdr->uptr); printf("]");                 /* TCP Urgent Pointer        */
+    printf("["); cprintf(&pttcp_doff, "%d", tcphdr->doff * 4); printf("]");             /* TCP Data Offset */
+    printf("["); cprintf(&pttcp_flgs, "%d", tcphdr->flgs); printf("]");                 /* TCP Flags */
+    printf("["); cprintf(&pttcp_wins, "%d", tcphdr->wins); printf("]");                 /* TCP Window Size */
+    printf("["); cprintf(&pttcp_csum, "%d", tcphdr->csum); printf("]");                 /* TCP Checksum */
+    printf("["); cprintf(&pttcp_uptr, "%d", tcphdr->uptr); printf("]");                 /* TCP Urgent Pointer */
 
     /* Print payload */
     printf("\n");
@@ -70,10 +88,15 @@ void rosn_prots_tcp_handle(const u_char *pkt, uint32_t pktlen)
 }
 
 
-/* Print payload for a TCP packet */
+/** 
+ * rosn_prots_tcp_payload()
+ * 
+ * Print payload for a TCP packet
+ *      pkt: the packet
+ *      sizehdr: header size
+ */
 void rosn_prots_tcp_payload(const u_char *pkt, int sizehdr)
 {
-
     int cnti = 0;      /* A counter for loops */
     int cntj = 0;      /* A counter for loops */
 

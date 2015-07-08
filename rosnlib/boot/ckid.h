@@ -2,18 +2,18 @@
  * =======================================================================================
  *
  *       Filename: ckid.h
- *    Description:
+ *    Description: Check the ID of the user
  *       Compiler: gcc
  *         Author: Simon L. J. Robin - http://sljrobin.com
  *        Created: 2015-04-30 15:51:54
- *       Modified: 2015-04-30 15:54:42
+ *       Modified: 2015-07-08 11:47:21
  *
  * =======================================================================================
  */
 
 #ifndef _ROSNLIB_CKID_H_
-#define _ROSNLIB_CKID_H
+#define _ROSNLIB_CKID_H_
 
-/* Check if the user has the rights to execute the sniffer */
-void rosn_boot_ckid_hasrights(void);
+void rosn_boot_ckid_hasrights(void);    /* Check the users rights */
+
 #endif

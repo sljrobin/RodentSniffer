@@ -2,11 +2,11 @@
  * =======================================================================================
  *
  *       Filename: help.c
- *    Description:
+ *    Description: Help of the program
  *       Compiler: gcc
  *         Author: Simon L. J. Robin - http://sljrobin.com
  *        Created: 2015-04-30 10:40:12
- *       Modified: 2015-07-07 15:32:21
+ *       Modified: 2015-07-08 11:43:03
  *
  * =======================================================================================
  */
@@ -17,7 +17,11 @@
 #include "help.h"
 
 
-/* Print help for Arguments */
+/** 
+ * rosn_utils_help_args()
+ * 
+ * Print help for Arguments
+ */
 void rosn_utils_help_args(void)
 {
     rosn_clrset ptargs_arg; rosn_utils_clrprnt_setattr(rosn_utils_clrprnt_setfg(rosn_utils_clrprnt_init(&ptargs_arg), ROSN_CLR_WHITE), ROSN_ATTR_NONE);     /* Argument */
@@ -39,7 +43,12 @@ void rosn_utils_help_args(void)
     printf("\n\t\t3. "); cprintf(&ptargs_arg, "-s <device>");
 }
 
-/* Print help for ARP */
+
+/** 
+ * rosn_utils_help_arp()
+ * 
+ * Print help for ARP
+ */
 void rosn_utils_help_arp(void)
 {
     rosn_clrset ptarp_typehdwr; rosn_utils_clrprnt_setattr(rosn_utils_clrprnt_setfg(rosn_utils_clrprnt_init(&ptarp_typehdwr), ROSN_CLR_GREEN), ROSN_ATTR_NONE);             /* ARP Hardware Type           */
@@ -75,28 +84,37 @@ void rosn_utils_help_arp(void)
 }
 
 
-/* Print help for Ethernet */
+/** 
+ * rosn_utils_help_eth()
+ * 
+ * Print help for Ethernet protocol
+ */
 void rosn_utils_help_eth(void)
 {
     rosn_clrset pteth_addrdst; rosn_utils_clrprnt_setattr(rosn_utils_clrprnt_setfg(rosn_utils_clrprnt_init(&pteth_addrdst), ROSN_CLR_CYAN), ROSN_ATTR_NONE);    /* Ethernet Destination Address */ 
     rosn_clrset pteth_addrsrc; rosn_utils_clrprnt_setattr(rosn_utils_clrprnt_setfg(rosn_utils_clrprnt_init(&pteth_addrsrc), ROSN_CLR_BLUE), ROSN_ATTR_NONE);    /* Ethernet Source Address      */
-    rosn_clrset pteth_ethtype; rosn_utils_clrprnt_setattr(rosn_utils_clrprnt_setfg(rosn_utils_clrprnt_init(&pteth_ethtype), ROSN_CLR_GREEN), ROSN_ATTR_NONE);   /* Ethernet Type                */
+    rosn_clrset pteth_ethtype; rosn_utils_clrprnt_setattr(rosn_utils_clrprnt_setfg(rosn_utils_clrprnt_init(&pteth_ethtype), ROSN_CLR_GREEN), ROSN_ATTR_NONE);   /* Ethernet Ether Type          */
 
     printf("\n\nEthernet  ");
     printf("["); cprintf(&pteth_addrdst, "01"); printf("]");    /* Ethernet Destination Address */
     printf("["); cprintf(&pteth_addrsrc, "02"); printf("]");    /* Ethernet Source Address      */
-    printf("["); cprintf(&pteth_ethtype, "03"); printf("]");    /* Ethernet Type                */
+    printf("["); cprintf(&pteth_ethtype, "03"); printf("]");    /* Ethernet Ether Type          */
 
     printf("\n\t- ["); cprintf(&pteth_addrdst, "01"); printf("] -> ["); cprintf(&pteth_addrdst, "destination address"); printf("]");    /* Ethernet Destination Address */
     printf("\n\t- ["); cprintf(&pteth_addrsrc, "02"); printf("] -> ["); cprintf(&pteth_addrsrc, "source address"); printf("]");         /* Ethernet Source Address      */
-    printf("\n\t- ["); cprintf(&pteth_ethtype, "03"); printf("] -> ["); cprintf(&pteth_ethtype, "ethertype"); printf("]");              /* Ethernet Type                */
+    printf("\n\t- ["); cprintf(&pteth_ethtype, "03"); printf("] -> ["); cprintf(&pteth_ethtype, "ethertype"); printf("]");              /* Ethernet Ether Type          */
 }
 
 
-/* Print full help */
+/** 
+ * rosn_utils_help_full()
+ * 
+ * Print full help
+ */
 void rosn_utils_help_full(void)
 {
     rosn_clrset ptfull_header; rosn_utils_clrprnt_setattr(rosn_utils_clrprnt_setfg(rosn_utils_clrprnt_init(&ptfull_header), ROSN_CLR_WHITE), ROSN_ATTR_NONE);   /* Header */
+
     /* Arguments */
     cprintf(&ptfull_header, "\n--------------------------------------------------------------------------------");
     cprintf(&ptfull_header, "\nArguments");
@@ -118,7 +136,11 @@ void rosn_utils_help_full(void)
 }
 
 
-/* Print help for ICMP */
+/** 
+ * rosn_utils_help_icmp()
+ * 
+ * Print help for ICMP
+ */
 void rosn_utils_help_icmp(void)
 {
     rosn_clrset pticmp_type; rosn_utils_clrprnt_setattr(rosn_utils_clrprnt_setfg(rosn_utils_clrprnt_init(&pticmp_type), ROSN_CLR_GREEN), ROSN_ATTR_NONE);   /* ICMP Type       */
@@ -142,7 +164,11 @@ void rosn_utils_help_icmp(void)
 }
 
 
-/* Print help for IPv4 */
+/** 
+ * rosn_utils_help_ipv4()
+ * 
+ * Print help for IPv4
+ */
 void rosn_utils_help_ipv4(void)
 {
     rosn_clrset ptipv4_v; rosn_utils_clrprnt_setattr(rosn_utils_clrprnt_setfg(rosn_utils_clrprnt_init(&ptipv4_v), ROSN_CLR_GREEN), ROSN_ATTR_NONE);             /* IPv4 Version             */
@@ -184,7 +210,11 @@ void rosn_utils_help_ipv4(void)
 }
 
 
-/* Print help for IPv6 */
+/** 
+ * rosn_utils_help_ipv6()
+ * 
+ * Print help for IPv6
+ */
 void rosn_utils_help_ipv6(void)
 {
 
@@ -218,7 +248,11 @@ void rosn_utils_help_ipv6(void)
 }
 
 
-/* Print help for TCP */
+/** 
+ * rosn_utils_help_tcp()
+ * 
+ * Print help for TCP
+ */
 void rosn_utils_help_tcp(void)
 {
     rosn_clrset pttcp_portsrc; rosn_utils_clrprnt_setattr(rosn_utils_clrprnt_setfg(rosn_utils_clrprnt_init(&pttcp_portsrc), ROSN_CLR_BLUE), ROSN_ATTR_NONE);    /* TCP Source Port           */
@@ -254,7 +288,11 @@ void rosn_utils_help_tcp(void)
 }
 
 
-/* Print help for UDP */
+/** 
+ * rosn_utils_help_udp()
+ * 
+ * Print help for UDP
+ */
 void rosn_utils_help_udp(void)
 {
     rosn_clrset ptudp_portdst; rosn_utils_clrprnt_setattr(rosn_utils_clrprnt_setfg(rosn_utils_clrprnt_init(&ptudp_portdst), ROSN_CLR_CYAN), ROSN_ATTR_NONE);    /* UDP Source Port      */

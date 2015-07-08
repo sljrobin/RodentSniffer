@@ -2,11 +2,11 @@
  * =======================================================================================
  *
  *       Filename: udp.c
- *    Description:
+ *    Description: UDP handling
  *       Compiler: gcc
  *         Author: Simon L. J. Robin - http://sljrobin.com
  *        Created: 2015-04-24 12:27:23
- *       Modified: 2015-07-07 17:48:46
+ *       Modified: 2015-07-08 11:09:29
  *
  * =======================================================================================
  */
@@ -22,7 +22,13 @@
 #include "udp.h"
 
 
-/* Handle UDP */
+/** 
+ * rosn_prots_udp_handle()
+ * 
+ * Handle UDP
+ *      pkt: the packet
+ *      pktlen: packet length
+ */
 void rosn_prots_udp_handle(const u_char *pkt, uint32_t pktlen)
 {
     struct rosn_ipv4hdr *iphdr;         /* IP Header */
@@ -33,26 +39,33 @@ void rosn_prots_udp_handle(const u_char *pkt, uint32_t pktlen)
     unsigned int sizehdr = 0;           /* Size for the main header */
 
     /* Printers */
-    rosn_clrset ptsep; rosn_utils_clrprnt_setattr(rosn_utils_clrprnt_setfg(rosn_utils_clrprnt_init(&ptsep), ROSN_CLR_WHITE), ROSN_ATTR_NONE);
-    rosn_clrset ptudp; rosn_utils_clrprnt_setattr(rosn_utils_clrprnt_init(&ptudp), ROSN_ATTR_UNDERLINE);
-    rosn_clrset ptudp_portdst; rosn_utils_clrprnt_setattr(rosn_utils_clrprnt_setfg(rosn_utils_clrprnt_init(&ptudp_portdst), ROSN_CLR_CYAN), ROSN_ATTR_NONE);
-    rosn_clrset ptudp_portsrc; rosn_utils_clrprnt_setattr(rosn_utils_clrprnt_setfg(rosn_utils_clrprnt_init(&ptudp_portsrc), ROSN_CLR_BLUE), ROSN_ATTR_NONE);
-    rosn_clrset ptudp_len; rosn_utils_clrprnt_setattr(rosn_utils_clrprnt_setfg(rosn_utils_clrprnt_init(&ptudp_len), ROSN_CLR_MAGENTA), ROSN_ATTR_NONE);
-    rosn_clrset ptudp_csum; rosn_utils_clrprnt_setattr(rosn_utils_clrprnt_setfg(rosn_utils_clrprnt_init(&ptudp_csum), ROSN_CLR_YELLOW), ROSN_ATTR_NONE);
+    rosn_clrset ptsep;
+    rosn_clrset ptudp;
+    rosn_clrset ptudp_csum; 
+    rosn_clrset ptudp_len; 
+    rosn_clrset ptudp_portdst;
+    rosn_clrset ptudp_portsrc;
 
-    iphdr = (struct rosn_ipv4hdr *)(pkt + sizeof(struct rosn_ethhdr));                      /* Point to the IP Header */
-    udphdr = (struct rosn_udphdr *)(pkt + (iphdr->hlen * 4) + sizeof(struct rosn_ethhdr));  /* Point to the UDP Header*/
-    len_ethhdr = sizeof(struct rosn_ethhdr);                                                /* Getting the size of an Ethernet header */
-    len_iphdr = iphdr->hlen * 4;                                                            /* Getting the size of an IP header */
-    len_udphdr = sizeof(udphdr);                                                            /* Getting the size of a UDP header */
-    sizehdr = len_ethhdr + len_iphdr + len_udphdr;                                          /* Getting the size for the main header */
+    rosn_utils_clrprnt_setattr(rosn_utils_clrprnt_setfg(rosn_utils_clrprnt_init(&ptsep), ROSN_CLR_WHITE), ROSN_ATTR_NONE);          /* Separator */
+    rosn_utils_clrprnt_setattr(rosn_utils_clrprnt_init(&ptudp), ROSN_ATTR_UNDERLINE);                                               /* UDP */
+    rosn_utils_clrprnt_setattr(rosn_utils_clrprnt_setfg(rosn_utils_clrprnt_init(&ptudp_csum), ROSN_CLR_YELLOW), ROSN_ATTR_NONE);    /* UDP Checksum */
+    rosn_utils_clrprnt_setattr(rosn_utils_clrprnt_setfg(rosn_utils_clrprnt_init(&ptudp_len), ROSN_CLR_MAGENTA), ROSN_ATTR_NONE);    /* UDP Length */
+    rosn_utils_clrprnt_setattr(rosn_utils_clrprnt_setfg(rosn_utils_clrprnt_init(&ptudp_portdst), ROSN_CLR_CYAN), ROSN_ATTR_NONE);   /* UDP Destination Port */
+    rosn_utils_clrprnt_setattr(rosn_utils_clrprnt_setfg(rosn_utils_clrprnt_init(&ptudp_portsrc), ROSN_CLR_BLUE), ROSN_ATTR_NONE);   /* UDP Source Port */
 
-    /* Print details */
-    cprintf(&ptsep, "¤"); printf("["); cprintf(&ptudp, "UDP"); printf("]");             /* UDP                  */
-    printf("["); cprintf(&ptudp_portsrc, "%d", ntohs(udphdr->portsrc)); printf("]");    /* UDP Source Port      */
+    iphdr = (struct rosn_ipv4hdr *)(pkt + sizeof(struct rosn_ethhdr));                      /* Pointing to the IP Header */
+    udphdr = (struct rosn_udphdr *)(pkt + (iphdr->hlen * 4) + sizeof(struct rosn_ethhdr));  /* Pointing to the UDP Header */
+
+    len_ethhdr = sizeof(struct rosn_ethhdr);        /* Getting the size of an Ethernet header */
+    len_iphdr = iphdr->hlen * 4;                    /* Getting the size of an IP header */
+    len_udphdr = sizeof(udphdr);                    /* Getting the size of a UDP header */
+    sizehdr = len_ethhdr + len_iphdr + len_udphdr;  /* Getting the size for the main header */
+
+    cprintf(&ptsep, "¤"); printf("["); cprintf(&ptudp, "UDP"); printf("]");             /* UDP */
+    printf("["); cprintf(&ptudp_portsrc, "%d", ntohs(udphdr->portsrc)); printf("]");    /* UDP Source Port */
     printf("["); cprintf(&ptudp_portdst, "%d", ntohs(udphdr->portdst)); printf("]");    /* UDP Destination Port */
-    printf("["); cprintf(&ptudp_len, "%d", ntohs(udphdr->len)); printf("]");            /* UDP Length           */
-    printf("["); cprintf(&ptudp_csum, "%x", ntohs(udphdr->csum)); printf("]");          /* UDP Length           */
+    printf("["); cprintf(&ptudp_len, "%d", ntohs(udphdr->len)); printf("]");            /* UDP Length */
+    printf("["); cprintf(&ptudp_csum, "%x", ntohs(udphdr->csum)); printf("]");          /* UDP Checksum */
 
     /* Print payload */
     printf("\n");
@@ -60,7 +73,13 @@ void rosn_prots_udp_handle(const u_char *pkt, uint32_t pktlen)
 }
 
 
-/* Print payload for a UDP packet */
+/** 
+ * rosn_prots_udp_payload()
+ * 
+ * Print payload for a UDP packet
+ *      pkt: the packet
+ *      sizehdr: header size
+ */
 void rosn_prots_udp_payload(const u_char *pkt, int sizehdr)
 {
 

@@ -2,21 +2,28 @@
  * =======================================================================================
  *
  *       Filename: clrprnt.c
- *    Description:
+ *    Description: Color formatting
  *       Compiler: gcc
  *         Author: Simon L. J. Robin - http://sljrobin.com
  *        Created: 2015-04-24 09:16:37
- *       Modified: 2015-04-24 12:37:58
+ *       Modified: 2015-07-08 11:25:52
  *
  * =======================================================================================
  */
 
 #include <stdarg.h>
 #include <stdio.h>
+
 #include "clrprnt.h"
 
 
-/* Initialize the Color Setter */
+/** 
+ * rosn_utils_clrprnt_init()
+ * 
+ * Initialize the Color Setter
+ *      clrset: the Color Setter
+ * Return the Color Setter
+ */
 rosn_clrset *rosn_utils_clrprnt_init(rosn_clrset *clrset)
 {
     clrset->attr = -1;
@@ -27,7 +34,14 @@ rosn_clrset *rosn_utils_clrprnt_init(rosn_clrset *clrset)
 }
 
 
-/* Set the Attribute to the Color Setter */
+/** 
+ * rosn_utils_clrprnt_setattr()
+ * 
+ * Set the Attribute to the Color Setter
+ *      clrset: the Color Setter
+ *      attr: the Attribute
+ * Return the Color Setter
+ */
 rosn_clrset *rosn_utils_clrprnt_setattr(rosn_clrset *clrset, int attr)
 {
     clrset->attr = attr;
@@ -36,7 +50,14 @@ rosn_clrset *rosn_utils_clrprnt_setattr(rosn_clrset *clrset, int attr)
 }
 
 
-/* Set the Background to the Color Setter */
+/** 
+ * rosn_utils_clrprnt_setbg()
+ * 
+ * Set the Attribute to the Color Setter
+ *      clrset: the Color Setter
+ *      bg: the Background
+ * Return the Color Setter
+ */
 rosn_clrset *rosn_utils_clrprnt_setbg(rosn_clrset *clrset, int bg)
 {
     clrset->bg = bg;
@@ -45,7 +66,14 @@ rosn_clrset *rosn_utils_clrprnt_setbg(rosn_clrset *clrset, int bg)
 }
 
 
-/* Set the Foreground to the Color Setter */
+/** 
+ * rosn_utils_clrprnt_setfg()
+ * 
+ * Set the Attribute to the Color Setter
+ *      clrset: the Color Setter
+ *      fg: the Foreground
+ * Return the Color Setter
+ */
 rosn_clrset *rosn_utils_clrprnt_setfg(rosn_clrset *clrset, int fg)
 {
     clrset->fg = fg;
@@ -54,7 +82,12 @@ rosn_clrset *rosn_utils_clrprnt_setfg(rosn_clrset *clrset, int fg)
 }
 
 
-/* Initialize the colored printf() */
+/** 
+ * rosn_utils_clrprnt_cprint_init()
+ * 
+ * Initialize the colored printf()
+ *      clrset: the Color Setter
+ */
 void rosn_utils_clrprnt_cprint_init(rosn_clrset *clrset)
 {
     if (clrset->bg != -1)
@@ -64,16 +97,24 @@ void rosn_utils_clrprnt_cprint_init(rosn_clrset *clrset)
 }
 
 
-/* Reset the colored printf() */
+/** 
+ * rosn_utils_clrprnt_cprint_reset()
+ * 
+ * Reset the colored printf()
+ */
 void rosn_utils_clrprnt_cprint_reset(void)
 {
     printf("%c[%dm", 27, 0);
-
-//    return 0;
 }
 
 
-/* The colored printf() */
+/** 
+ * cprintf()
+ * 
+ * The colored printf()
+ *      clrset: the Color Setter
+ *      fmt: the assigned format
+ */
 void cprintf(rosn_clrset *clrset, char *fmt, ...)
 {
     va_list args;
@@ -82,6 +123,4 @@ void cprintf(rosn_clrset *clrset, char *fmt, ...)
     vprintf(fmt, args);
     rosn_utils_clrprnt_cprint_reset();
     va_end(args);
-
-//    return 0;
 }
