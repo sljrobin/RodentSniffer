@@ -43,8 +43,7 @@ The folder [`rosnlib/`] contains:
 * [`utils/`]: miscellaneous elements as help or color printers
 
 ## License
-This project is under the [BSD 2-Clause license].
-
+[RodentSniffer] is distributed under the same terms as [libpcap] itself. See [libpcap license] for more information.
 
 [`boot/`]: /rosnlib/boot "boot/"
 [`process/`]: /rosnlib/process "process/"
@@ -57,9 +56,9 @@ This project is under the [BSD 2-Clause license].
 [Sniff the Network]: /README.md#sniff-the-network "Sniff the Network"
 [Usage & Options]: /README.md#usage--options "Usage & Options"
 
-[BSD 2-Clause license]: http://opensource.org/licenses/BSD-2-Clause "BSD 2-Clause license"
 [gcc]: https://gcc.gnu.org/ "gcc"
 [libpcap]: http://www.tcpdump.org/ "libpcap"
+[libpcap license]: http://www.tcpdump.org/license.html "libpcap license"
 [makefile]: /makefile "makefile"
 [pcap-filter syntax]: http://www.tcpdump.org/manpages/pcap-filter.7.html "pcap-filter syntax"
 [RodentSniffer]: / "RodentSniffer"
