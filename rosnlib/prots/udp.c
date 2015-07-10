@@ -50,8 +50,8 @@ void rosn_prots_udp_handle(const u_char *pkt, uint32_t pktlen)
     rosn_utils_clrprnt_setattr(rosn_utils_clrprnt_init(&ptudp), ROSN_ATTR_UNDERLINE);                                               /* UDP */
     rosn_utils_clrprnt_setattr(rosn_utils_clrprnt_setfg(rosn_utils_clrprnt_init(&ptudp_csum), ROSN_CLR_YELLOW), ROSN_ATTR_NONE);    /* UDP Checksum */
     rosn_utils_clrprnt_setattr(rosn_utils_clrprnt_setfg(rosn_utils_clrprnt_init(&ptudp_len), ROSN_CLR_MAGENTA), ROSN_ATTR_NONE);    /* UDP Length */
-    rosn_utils_clrprnt_setattr(rosn_utils_clrprnt_setfg(rosn_utils_clrprnt_init(&ptudp_portdst), ROSN_CLR_CYAN), ROSN_ATTR_NONE);   /* UDP Destination Port */
-    rosn_utils_clrprnt_setattr(rosn_utils_clrprnt_setfg(rosn_utils_clrprnt_init(&ptudp_portsrc), ROSN_CLR_BLUE), ROSN_ATTR_NONE);   /* UDP Source Port */
+    rosn_utils_clrprnt_setattr(rosn_utils_clrprnt_setfg(rosn_utils_clrprnt_init(&ptudp_portdst), ROSN_CLR_BLUE), ROSN_ATTR_NONE);   /* UDP Destination Port */
+    rosn_utils_clrprnt_setattr(rosn_utils_clrprnt_setfg(rosn_utils_clrprnt_init(&ptudp_portsrc), ROSN_CLR_CYAN), ROSN_ATTR_NONE);   /* UDP Source Port */
 
     iphdr = (struct rosn_ipv4hdr *)(pkt + sizeof(struct rosn_ethhdr));                      /* Pointing to the IP Header */
     udphdr = (struct rosn_udphdr *)(pkt + (iphdr->hlen * 4) + sizeof(struct rosn_ethhdr));  /* Pointing to the UDP Header */
