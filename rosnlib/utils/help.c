@@ -295,8 +295,8 @@ void rosn_utils_help_tcp(void)
  */
 void rosn_utils_help_udp(void)
 {
-    rosn_clrset ptudp_portdst; rosn_utils_clrprnt_setattr(rosn_utils_clrprnt_setfg(rosn_utils_clrprnt_init(&ptudp_portdst), ROSN_CLR_CYAN), ROSN_ATTR_NONE);    /* UDP Source Port      */
-    rosn_clrset ptudp_portsrc; rosn_utils_clrprnt_setattr(rosn_utils_clrprnt_setfg(rosn_utils_clrprnt_init(&ptudp_portsrc), ROSN_CLR_BLUE), ROSN_ATTR_NONE);    /* UDP Destination Port */
+    rosn_clrset ptudp_portdst; rosn_utils_clrprnt_setattr(rosn_utils_clrprnt_setfg(rosn_utils_clrprnt_init(&ptudp_portdst), ROSN_CLR_BLUE), ROSN_ATTR_NONE);    /* UDP Source Port      */
+    rosn_clrset ptudp_portsrc; rosn_utils_clrprnt_setattr(rosn_utils_clrprnt_setfg(rosn_utils_clrprnt_init(&ptudp_portsrc), ROSN_CLR_CYAN), ROSN_ATTR_NONE);    /* UDP Destination Port */
     rosn_clrset ptudp_len; rosn_utils_clrprnt_setattr(rosn_utils_clrprnt_setfg(rosn_utils_clrprnt_init(&ptudp_len), ROSN_CLR_MAGENTA), ROSN_ATTR_NONE);         /* UDP Length           */
     rosn_clrset ptudp_csum; rosn_utils_clrprnt_setattr(rosn_utils_clrprnt_setfg(rosn_utils_clrprnt_init(&ptudp_csum), ROSN_CLR_YELLOW), ROSN_ATTR_NONE);        /* UDP Checksum         */
 
