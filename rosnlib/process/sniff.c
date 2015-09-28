@@ -163,7 +163,7 @@ void rosn_process_sniff_loop(char *dev, char *fltr, int mode)
     /* Opening device */
     cprintf(&ptstep_inprogress, "Opening device: ");
     cprintf(&ptstep_info, "%s\t\t\t\t\t", dev);
-    handle = pcap_open_live("eth0", ROSN_MAX_CAPTURED_BYTES, mode, ROSN_WAIT_COPY, errbuf);
+    handle = pcap_open_live(dev, ROSN_MAX_CAPTURED_BYTES, mode, ROSN_WAIT_COPY, errbuf);
     if (handle == NULL) {
         cprintf(&ptstep_error, "[ERROR]: Could not open device: %s\n", errbuf);
         exit(1);
