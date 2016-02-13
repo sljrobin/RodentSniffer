@@ -4,9 +4,9 @@
  *       Filename: udp.h
  *    Description: UDP handling
  *       Compiler: gcc
- *         Author: Simon L. J. Robin - http://sljrobin.com
+ *         Author: Simon L. J. Robin | https://sljrobin.org
  *        Created: 2015-04-24 12:27:32
- *       Modified: 2015-07-08 11:04:27
+ *       Modified: 2016-02-13 13:40:24
  *
  * =======================================================================================
  */

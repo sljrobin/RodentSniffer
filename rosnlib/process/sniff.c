@@ -4,9 +4,9 @@
  *       Filename: sniffing.c
  *    Description: Sniffing functions
  *       Compiler: gcc
- *         Author: Simon L. J. Robin - http://sljrobin.com
+ *         Author: Simon L. J. Robin | https://sljrobin.org
  *        Created: 2015-04-30 15:28:41
- *       Modified: 2015-07-08 11:43:48
+ *       Modified: 2016-02-13 13:37:19
  *
  * =======================================================================================
  */

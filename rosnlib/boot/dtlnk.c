@@ -4,9 +4,9 @@
  *       Filename: dtlnk.c
  *    Description: Get the Data Link Header Type
  *       Compiler: gcc
- *         Author: Simon L. J. Robin - http://sljrobin.com
+ *         Author: Simon L. J. Robin | https://sljrobin.org
  *        Created: 2015-04-30 15:28:41
- *       Modified: 2015-07-08 09:33:08
+ *       Modified: 2016-02-13 13:36:15
  *
  * =======================================================================================
  */

@@ -4,9 +4,9 @@
  *       Filename: eth.h
  *    Description: Ethernet handling
  *       Compiler: gcc
- *         Author: Simon L. J. Robin - http://sljrobin.com
+ *         Author: Simon L. J. Robin | https://sljrobin.org
  *        Created: 2015-04-30 15:27:53
- *       Modified: 2015-07-08 10:16:55
+ *       Modified: 2016-02-13 13:41:16
  *
  * =======================================================================================
  */

@@ -4,9 +4,9 @@
  *       Filename: ip.h
  *    Description: IP handling
  *       Compiler: gcc
- *         Author: Simon L. J. Robin - http://sljrobin.com
+ *         Author: Simon L. J. Robin | https://sljrobin.org
  *        Created: 2015-04-30 15:27:53
- *       Modified: 2015-07-08 10:51:09
+ *       Modified: 2016-02-13 13:40:51
  *
  * =======================================================================================
  */

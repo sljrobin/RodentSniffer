@@ -4,9 +4,9 @@
  *       Filename: clrprnt.h
  *    Description: Color formatting
  *       Compiler: gcc
- *         Author: Simon L. J. Robin - http://sljrobin.com
+ *         Author: Simon L. J. Robin | https://sljrobin.org
  *        Created: 2015-04-24 09:15:28
- *       Modified: 2015-07-08 11:25:53
+ *       Modified: 2016-02-13 13:43:06
  *
  * =======================================================================================
  */

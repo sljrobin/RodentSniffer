@@ -4,9 +4,9 @@
  *       Filename: help.h
  *    Description: Help of the program
  *       Compiler: gcc
- *         Author: Simon L. J. Robin - http://sljrobin.com
+ *         Author: Simon L. J. Robin | https://sljrobin.org
  *        Created: 2015-04-30 10:38:33
- *       Modified: 2015-07-08 11:38:58
+ *       Modified: 2016-02-13 13:42:55
  *
  * =======================================================================================
  */
