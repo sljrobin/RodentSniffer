@@ -4,9 +4,9 @@
  *       Filename: rosn.c
  *    Description: Main file
  *       Compiler: gcc
- *         Author: Simon L. J. Robin - http://sljrobin.com
+ *         Author: Simon L. J. Robin | https://sljrobin.org
  *        Created: 2015-04-30 08:32:04
- *       Modified: 2015-07-08 11:43:46
+ *       Modified: 2016-02-13 13:32:56
  *
  * =======================================================================================
  */

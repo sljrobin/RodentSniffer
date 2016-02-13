@@ -4,9 +4,9 @@
  *       Filename: header.c
  *    Description: Header printing
  *       Compiler: gcc
- *         Author: Simon L. J. Robin - http://sljrobin.com
+ *         Author: Simon L. J. Robin | https://sljrobin.org
  *        Created: 2015-04-30 10:40:12
- *       Modified: 2015-07-08 09:33:02
+ *       Modified: 2016-02-13 13:36:04
  *
  * =======================================================================================
  */

@@ -4,9 +4,9 @@
  *       Filename: tcp.h
  *    Description: TCP handling
  *       Compiler: gcc
- *         Author: Simon L. J. Robin - http://sljrobin.com
+ *         Author: Simon L. J. Robin | https://sljrobin.orgm
  *        Created: 2015-04-24 12:27:32
- *       Modified: 2015-07-08 11:09:32
+ *       Modified: 2016-02-13 13:40:38
  *
  * =======================================================================================
  */
