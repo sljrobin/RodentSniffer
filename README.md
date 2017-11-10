@@ -1,5 +1,5 @@
 # RodentSniffer
-[RodentSniffer] is a sniffer developed in C using [libpcap] with the main goal to give an in-depth understanding of the classical network protocols you are using everyday. Feel free to check out the [RodentSniffer webpage].
+[RodentSniffer] is a sniffer developed in C using [libpcap] with the main goal to give an in-depth understanding of the classical network protocols you are using everyday.
 
 ## Table of contents
 * [Requirements]
